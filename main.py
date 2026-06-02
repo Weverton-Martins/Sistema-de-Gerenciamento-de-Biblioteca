@@ -8,9 +8,9 @@
 as execuções do programa.
 ● Testar funcionalidades para garantir a confiabilidade do sistema.'''
 
-import json
-import os
-from datetime import datetime
-import logging
+from biblioteca import GerenciadorBiblioteca
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+sistema = GerenciadorBiblioteca()
+
+
+
