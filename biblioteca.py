@@ -45,7 +45,7 @@ class GerenciadorBiblioteca:
             
                 id_gerado = f'EMP-{self.proximo_id_emprestimo}'
 
-                self.emprestimo[id_gerado] = {
+                self.emprestimos[id_gerado] = {
                     "id_usuario": id_usuario,
                     "id_livro": id_livro,
                     "status": "Ativo"
@@ -85,7 +85,7 @@ class GerenciadorBiblioteca:
     def pesquisar_usuario(self, termo_pesquisa):
         resultado = []
 
-        for usuario in self.usuario.values():
+        for usuario in self.usuarios.values():
             if termo_pesquisa.lower() in usuario.nome.lower():
                 resultado.append(usuario)
         

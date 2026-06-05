@@ -1,0 +1,27 @@
+{
+    "livros": {
+        "LIV-1": {
+            "id_livro": "LIV-1",
+            "titulo": "Harry Potter",
+            "autor": "J.K.Hollins",
+            "ano": "2001",
+            "ibsn": "12345",
+            "disponivel": false
+        }
+    },
+    "usuarios": {
+        "USR-1": {
+            "id_usuario": "USR-1",
+            "nome": "weverton",
+            "email": "weverton@gmail.com",
+            "telefone": "40028922"
+        }
+    },
+    "emprestimos": {
+        "EMP-1": {
+            "id_usuario": "USR-1",
+            "id_livro": "LIV-1",
+            "status": "Ativo"
+        }
+    }
+}

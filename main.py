@@ -19,7 +19,7 @@ while True:
     print('Opção 2: Cliente')
     print('Opção 3: Sair')
 
-    opcao_principal = input('Informe qual o seu acesso: ')
+    opcao_principal = input('\nInforme qual o seu acesso: ')
 
     if opcao_principal == '1':
         opcao1 = ''
@@ -30,7 +30,7 @@ while True:
             print('Opção 4: Salvar')
             print('Opção 5: Sair')
 
-            opcao1 = input('Escolha uma opção: ')
+            opcao1 = input('\nEscolha uma opção: ')
 
             if opcao1 == '1':
                 print('\n___CADASTRO DE LIVRO___')
@@ -68,7 +68,7 @@ while True:
             
             elif opcao1 == '4':
                 sistema.salvar_dados()
-                print('Dados salvos com sucesso no disco!')
+                print('Dados salvos com sucesso no disco!\n')
            
             elif opcao1 == '5':
                 print('Encerrando o sistema...')
@@ -88,7 +88,7 @@ while True:
             print('Opção 6: Salvar')
             print('Opção 7: Sair')
 
-            opcao2 = input('Escolha uma opção: ')    
+            opcao2 = input('\nEscolha uma opção: ')    
 
             if opcao2 == '1':
                 print('\n___CADASTRO DE USUARIO___')
@@ -146,7 +146,7 @@ while True:
             
             elif opcao2 == '6':
                 sistema.salvar_dados()
-                print('Dados salvos com sucesso no disco!')
+                print('Dados salvos com sucesso no disco!\n')
             
             elif opcao2 == '7':
                 print('Encerrando o sistema...')  
@@ -155,7 +155,7 @@ while True:
                 print('Opção invalida!')   
     
     elif opcao_principal == '3':
-        print('Encerrando o sistema, obrigado por visitar a biblioteca!')
+        print('\nEncerrando o sistema, obrigado por visitar a biblioteca!\n')
         break
     else:
         print('Opção invalida!')
