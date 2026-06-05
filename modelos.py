@@ -8,7 +8,7 @@ class Livro:
         self.titulo = titulo
         self.autor = autor
         self.ano = ano
-        self.IBSN = ibsn
+        self.ibsn = ibsn
         self.disponivel = True
 
 class Usuario:

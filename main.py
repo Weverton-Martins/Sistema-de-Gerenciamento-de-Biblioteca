@@ -40,15 +40,40 @@ while True:
                 ibsn = input('IBSN: ')
                 sistema.cadastrar_livro(titulo, autor, ano,ibsn)
                 print('Livro cadastrado com sucesso!')
+            
             elif opcao1 == '2':
-                sistema.pesquisar_usuario()
+                print('\n___PESQUISAR USUÁRIO___')
+                termo = input('Digite o nome do usuario que deseja buscar: ')
+
+                usuario_encontrado = sistema.pesquisar_usuario(termo)
+                if len(usuario_encontrado) == 0:
+                    print('Não temos nenhum usuário com esse nome no momento!')
+                else:
+                    print('-' * 40)
+                    for user in usuario_encontrado:
+                        print(f"ID: {user.id_usuario} | Nome: {user.nome} | Contato: {user.telefone}")
+                    print('-' * 40)  
+
             elif opcao1 == '3':
-                sistema.listagem_livros_emprestados()
+                print('\n___LIVROS EMPRESTADOS NO MOMENTO___')
+                livros_ocupados = sistema.listagem_livros_emprestados()
+                
+                if len(livros_ocupados) == 0:
+                    print('Nenhum livro emprestado no momento. Todos estão na prateleira!')
+                else:
+                    print('-' * 40)
+                    for livro in livros_ocupados:
+                        print(f"ID: {livro.id_livro} | Título: {livro.titulo}")
+                    print('-' * 40)
+            
             elif opcao1 == '4':
                 sistema.salvar_dados()
+                print('Dados salvos com sucesso no disco!')
+           
             elif opcao1 == '5':
                 print('Encerrando o sistema...')
                 break
+            
             else:
                 print('Opção invalida!')
 
@@ -72,8 +97,20 @@ while True:
                 telefone = input('Telefone: ')
                 id_recebido = sistema.cadastrar_usuario(nome, email, telefone)
                 print(f'Cadastro concluído! Anote o seu ID de acesso: {id_recebido}')
+            
             elif opcao2 == '2':
-                sistema.pesquisar_livro() 
+                print('\n___PESQUISAR LIVROS___')
+                termo = input('Digite o titulo do livro que deseja buscar: ')
+
+                livro_encontrado = sistema.pesquisar_livro(termo) 
+                if len(livro_encontrado) == 0:
+                    print('Não temos nenhum livro com esse titulo no momento!')
+                else:
+                    print('-' * 40)
+                    for info in livro_encontrado:
+                        print(f"ID: {info.id_livro} | Titulo: {info.titulo} | Autor: {info.autor}")
+                    print('-' * 40)  
+                
             elif opcao2 == '3':
                 print('\n___CATÁLOGO DE LIVROS DISPONÍVEIS___')
                 livros_prateleira = sistema.listagem_livros()
@@ -85,6 +122,7 @@ while True:
                     for livro in livros_prateleira:
                         print(f"ID: {livro.id_livro} | Título: {livro.titulo} | Autor: {livro.autor}")
                     print('-' * 40)
+            
             elif opcao2 == '4':
                 print('\n--- EMPRÉSTIMO DE LIVRO ---')
                 id_cliente = input('Informe o seu ID: ')
@@ -95,12 +133,24 @@ while True:
                     print('Emprestimo realizado com sucesso;')
                 else:
                     print('Falha no emprestimo verifique se os IDs estão corretos ou se o livro está disponivel.')
+           
             elif opcao2 == '5':
-                sistema.devolucao_livros() 
+                print('\n--- DEVOLUÇÃO DE LIVRO ---')
+                id_recebido = input('Informe o ID do emprestimo: ')
+                
+                sucesso = sistema.devolucao_livros(id_recebido) 
+                if sucesso == True:
+                    print('Livro devolvido com sucesso, obrigado')
+                else:
+                    print('Falha na devolução verifique se o ID do emprestimo está correto.')
+            
             elif opcao2 == '6':
-                sistema.salvar_dados()   
+                sistema.salvar_dados()
+                print('Dados salvos com sucesso no disco!')
+            
             elif opcao2 == '7':
                 print('Encerrando o sistema...')  
+            
             else:
                 print('Opção invalida!')   
     
@@ -108,5 +158,5 @@ while True:
         print('Encerrando o sistema, obrigado por visitar a biblioteca!')
         break
     else:
-        print('pção invalida!')
+        print('Opção invalida!')
 

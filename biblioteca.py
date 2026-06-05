@@ -9,12 +9,12 @@ class GerenciadorBiblioteca:
     #Definindo os dicionarios
     def __init__(self):
         self.livros = {}
-        self.usuario = {}
-        self.emprestimo = {}
+        self.usuarios = {}
+        self.emprestimos = {}
         self.proximo_id_livro = 1
         self.proximo_id_usuario = 1
         self.proximo_id_emprestimo = 1
-        self.carregar_dados() #
+        self.carregar_dados() 
 
 #Definindo as funções
     def cadastrar_livro(self, titulo, autor, ano,ibsn):
@@ -30,7 +30,7 @@ class GerenciadorBiblioteca:
     def cadastrar_usuario(self, nome, email, telefone):
         id_gerado = f'USR-{self.proximo_id_usuario}'
         novo_usuario = Usuario(id_gerado, nome, email, telefone)
-        self.usuario[id_gerado] = novo_usuario
+        self.usuarios[id_gerado] = novo_usuario
         self.proximo_id_usuario += 1
         self.salvar_dados()
 
@@ -38,7 +38,7 @@ class GerenciadorBiblioteca:
         return id_gerado
 
     def empresta_livros(self, id_usuario, id_livro):
-        if id_usuario in self.usuario and id_livro in self.livros:
+        if id_usuario in self.usuarios and id_livro in self.livros:
 
             if self.livros[id_livro].disponivel == True:
                 self.livros[id_livro].disponivel = False
@@ -47,11 +47,12 @@ class GerenciadorBiblioteca:
 
                 self.emprestimo[id_gerado] = {
                     "id_usuario": id_usuario,
-                    "id_livro": id_livro
+                    "id_livro": id_livro,
+                    "status": "Ativo"
                 }
 
                 self.proximo_id_emprestimo += 1
-
+                self.salvar_dados()
                 return True
             else:
                 return False
@@ -59,14 +60,15 @@ class GerenciadorBiblioteca:
             return False
         
     def devolucao_livros(self, id_emprestimo):
-        if id_emprestimo in self.emprestimo:
+        if id_emprestimo in self.emprestimos:
             #descobre qual o livro
-            id_livro_emprestado = self.emprestimo[id_emprestimo]['id_livro']
+            id_livro_emprestado = self.emprestimos[id_emprestimo]['id_livro']
             #atribui concluido ao status do emprestimo
-            self.emprestimo[id_emprestimo]['status'] = 'Concluido'
+            self.emprestimos[id_emprestimo]['status'] = 'Concluido'
             #muda o status do livro
-            self.livros[id_livro_emprestado].disponivel = False
+            self.livros[id_livro_emprestado].disponivel = True
 
+            self.salvar_dados()
             return True
         else:
             return False
@@ -112,7 +114,7 @@ class GerenciadorBiblioteca:
         dados_para_salvar = {
             "livros": {},
             "usuarios": {},
-            "emprestimos" : self.emprestimo
+            "emprestimos" : self.emprestimos,
         }
         #Desencapsulando os objetos Livro para dicionários comuns
         for id_livro, obj_livro in self.livros.items():
@@ -136,7 +138,7 @@ class GerenciadorBiblioteca:
                 for id_livro, dados_livro in livros_salvos.items():
                     # Recria o objeto chamando a classe Livro
                     novo_livro = Livro(
-                        dados_livro['ID'], 
+                        dados_livro['id_livro'], 
                         dados_livro['titulo'], 
                         dados_livro['autor'], 
                         dados_livro['ano'], 
@@ -152,7 +154,7 @@ class GerenciadorBiblioteca:
                 for id_usuario, dados_usuario in usuarios_salvos.items():
                     # Recria o objeto chamando a classe Usuario
                     novo_usuario = Usuario(
-                        dados_usuario['ID'],
+                        dados_usuario['id_usuario'],
                         dados_usuario['nome'],
                         dados_usuario['email'],
                         dados_usuario['telefone']
