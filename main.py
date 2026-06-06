@@ -8,10 +8,15 @@
 as execuções do programa.
 ● Testar funcionalidades para garantir a confiabilidade do sistema.'''
 
+'''
+AQUI É A INTERFACE E INTERAÇÃO, FAZ OS MENUS COLETAR AS INFORMÇÕES VIA TECLADO E ENVIAR PARA O 'MOTOR, A CRUD'
+'''
+
+#Importando a CRUD
 from biblioteca import GerenciadorBiblioteca
 
 sistema = GerenciadorBiblioteca()
-
+#Menu principal
 while True:
 
     print('_______BEM-VINDO!______')
@@ -20,7 +25,7 @@ while True:
     print('Opção 3: Sair')
 
     opcao_principal = input('\nInforme qual o seu acesso: ')
-
+    #Primeiro menu secundario
     if opcao_principal == '1':
         opcao1 = ''
         while opcao1 != '5':
@@ -31,7 +36,7 @@ while True:
             print('Opção 5: Sair')
 
             opcao1 = input('\nEscolha uma opção: ')
-
+            #Chama a função cadastrar_livro, entregando seus devidos inputs
             if opcao1 == '1':
                 print('\n___CADASTRO DE LIVRO___')
                 titulo = input('Título: ')
@@ -40,7 +45,7 @@ while True:
                 ibsn = input('IBSN: ')
                 sistema.cadastrar_livro(titulo, autor, ano,ibsn)
                 print('Livro cadastrado com sucesso!')
-            
+            #chama a função pesquisar_usuario, percorre o dicionario de usuario e realiza um for para devolver os dados
             elif opcao1 == '2':
                 print('\n___PESQUISAR USUÁRIO___')
                 termo = input('Digite o nome do usuario que deseja buscar: ')
@@ -53,7 +58,7 @@ while True:
                     for user in usuario_encontrado:
                         print(f"ID: {user.id_usuario} | Nome: {user.nome} | Contato: {user.telefone}")
                     print('-' * 40)  
-
+            #chama a função listagem_livros_emprestados 
             elif opcao1 == '3':
                 print('\n___LIVROS EMPRESTADOS NO MOMENTO___')
                 livros_ocupados = sistema.listagem_livros_emprestados()
@@ -76,7 +81,7 @@ while True:
             
             else:
                 print('Opção invalida!')
-
+    #Segundo menu secundario
     elif opcao_principal == '2':
         opcao2 = ''
         while opcao2 != '7':
@@ -89,14 +94,14 @@ while True:
             print('Opção 7: Sair')
 
             opcao2 = input('\nEscolha uma opção: ')    
-
+            #chama a função de cadastro do usuario, entrega o menu de preenchimento pelos inputs
             if opcao2 == '1':
                 print('\n___CADASTRO DE USUARIO___')
                 nome = input('Nome: ')
                 email = input('E-mail: ')
                 telefone = input('Telefone: ')
                 id_recebido = sistema.cadastrar_usuario(nome, email, telefone)
-                print(f'Cadastro concluído! Anote o seu ID de acesso: {id_recebido}')
+                print(f'Cadastro concluído! Anote o seu ID de acesso: {id_recebido}')#reforça pra anotar o ID pois e necessario
             
             elif opcao2 == '2':
                 print('\n___PESQUISAR LIVROS___')
@@ -119,10 +124,11 @@ while True:
                 else:
                     print('Anote o ID do livro que queira pegar.')
                     print('-' * 40)
+                    #fornece os dados dos livros e reforça que anote o ID do livro desejado
                     for livro in livros_prateleira:
                         print(f"ID: {livro.id_livro} | Título: {livro.titulo} | Autor: {livro.autor}")
                     print('-' * 40)
-            
+            #alem de chamar a função de emprestimo, reforça com cliente que é necesario anotar os ID que foram informados no cadastro ou pesquisa dos livros disponiveis
             elif opcao2 == '4':
                 print('\n--- EMPRÉSTIMO DE LIVRO ---')
                 id_cliente = input('Informe o seu ID: ')
@@ -133,7 +139,7 @@ while True:
                     print('Emprestimo realizado com sucesso;')
                 else:
                     print('Falha no emprestimo verifique se os IDs estão corretos ou se o livro está disponivel.')
-           
+            #verifica o livro devolvido e altera o status pra disponivel
             elif opcao2 == '5':
                 print('\n--- DEVOLUÇÃO DE LIVRO ---')
                 id_recebido = input('Informe o ID do emprestimo: ')

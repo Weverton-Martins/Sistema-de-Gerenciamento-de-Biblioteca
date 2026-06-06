@@ -1,6 +1,8 @@
 #Camada de Entidades
-#Guardam as informações
-
+'''
+AQUI ONDE FICA OS DADOS E MODELOS
+'''
+#Guardam as informações da classe livro
 class Livro:
 
     def __init__(self,id_livro, titulo, autor, ano, ibsn):
@@ -11,6 +13,7 @@ class Livro:
         self.ibsn = ibsn
         self.disponivel = True
 
+#Guardam as informações da classe usuario
 class Usuario:
 
     def __init__(self, id_usuario, nome, email, telefone):
