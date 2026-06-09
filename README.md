@@ -1,1 +1,2 @@
-# Sistema de Gerenciamento de Biblioteca inteiramente em Python. O foco principal do desenvolvimento foi aplicar conceitos sólidos de Engenharia de Software, priorizando a escalabilidade, a performance e a separação de responsabilidades.
+# Sistema de Gerenciamento de Biblioteca inteiramente em Python. 
+O foco principal do desenvolvimento foi aplicar conceitos sólidos de Engenharia de Software, priorizando a escalabilidade, a performance e a separação de responsabilidades.
